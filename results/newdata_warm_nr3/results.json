@@ -1,0 +1,126 @@
+{
+  "args": {
+    "train_csv": "data\\newdata_clean\\train.csv",
+    "test_csv": "data\\newdata_clean\\test.csv",
+    "model": "gpt2",
+    "n_train": 8,
+    "epochs": 0,
+    "bs": 8,
+    "lr": 0.01,
+    "prefix_len": 10,
+    "max_len": 128,
+    "n_eval": 13,
+    "beams": 1,
+    "no_repeat_ngram": 3,
+    "out_dir": "results\\newdata_warm_nr3",
+    "seed": 0,
+    "init_adapter": "results\\newdata_warm\\adapter",
+    "cover_slots": "name,brand,color,fabric,material,pattern,type"
+  },
+  "trainable": 184320,
+  "total": 124624128,
+  "loss_history": [],
+  "metrics": {
+    "BLEU": 5.446671000681431,
+    "BLEU_smoothed": 5.446671000681431,
+    "NIST": 1.7285287855918972,
+    "ROUGE_L": 18.242600790155517,
+    "METEOR": 20.68542206071254,
+    "slot_value_coverage_%": 25.0
+  },
+  "coverage_by_slot": {
+    "name": "0% (0/12)",
+    "type": "45% (5/11)",
+    "pattern": "20% (1/5)",
+    "color": "14% (1/7)",
+    "brand": "33% (2/6)",
+    "material": "100% (2/2)",
+    "fabric": "0% (0/1)"
+  },
+  "samples": [
+    {
+      "mr": "name[Miss Chase Women's Sheath Dress], category[Clothing], subcategory[Women's Clothing], priceRange[moderate], type[Sheath], ideal for[Women's], occasion[Casual], pattern[Animal Print]",
+      "generated": "Miss Chase dresses for casual wear. This dress is made of high quality fabric and has a smooth texture.",
+      "references": [
+        "This animal print dress is perfect for the summers, and a guaranteed style statement. Pair this lovely number with colored flats and accessories for a ?pop?"
+      ]
+    },
+    {
+      "mr": "name[Live In Slim Fit Men's Trousers], category[Clothing], subcategory[Men's Clothing], priceRange[expensive], type[Trouser], ideal for[Men's], color[Black], occasion[Formal]",
+      "generated": "Live In Thin Fit Men Trouser Is A Trousertape. This Trousethape is made up Of Alloy, Alloy, Steel, Alloy Fabric.",
+      "references": [
+        "Join The League Of Fashionable Men This Season By Wearing These Trousers For Men From Live In. Made From Cotton Fabric, They Are Comfortable To Wear And Soft On The Skin."
+      ]
+    },
+    {
+      "mr": "name[Ravishing Variety Statue Showpiece - 30 cm], brand[Ravishing Variety], category[Home Decor & Festive Needs], subcategory[Showpieces], priceRange[moderate], type[Ethnic], color[Gold], material[Brass], weight[750 g]",
+      "generated": "Ravishing Your Visuals With This Showpiece From Ravishing. This Show Piece Is Made Of Brass.",
+      "references": [
+        "This Dokra Style Statue is made of brass decoring your home,room,dinning room etc. improving shining of your home."
+      ]
+    },
+    {
+      "mr": "name[Jacknjewel Charming Six Stone White Gold Diamond 18 K Ring], brand[Jacknjewel], category[Jewellery], subcategory[Rings], priceRange[expensive], type[Ring], ideal for[Women], color[White], occasion[Wedding and Engagement]",
+      "generated": "This beautiful ring holds 6 diamonds, a total diamond weight of 0.6 carat, a weight of 1.6 pounds and a total weight of 2.5 carat.",
+      "references": [
+        "Certified Diamond Ring Made In 18 Kt Hallmark Gold Studded With 0.06 Carat Diamond. All Products Is Certified And Hallmarked."
+      ]
+    },
+    {
+      "mr": "name[Voylla Artifictial Beaded Plain Pearl Yellow Gold Plated Alloy Necklace], brand[Voylla], category[Jewellery], subcategory[Necklaces & Chains], priceRange[moderate], type[Necklace], ideal for[Women], color[Gold], occasion[Wedding and Engagement, Love]",
+      "generated": "This beautiful necklace from Voylla is made of Gold Plates. This necklace is made up of Gold plated Alloy Plated and is made to last longer than normal.",
+      "references": [
+        "Steal the spotlight with this stylish statement necklace, set with exquisite golden, black & white pearl bead work. Grab this perfect steal of the season today!"
+      ]
+    },
+    {
+      "mr": "name[First Smart Deal Plant Container Set], brand[First Smart Deal], category[Tools & Hardware], subcategory[Tools], priceRange[cheap], type[Outdoor], color[Brown], material[Plastic], height[27 cm]",
+      "generated": "This beautiful and unique set of First Smart Deals is a must have for outdoor gardening. This set of first smart deals is made of Plastic and Plastic.",
+      "references": [
+        "Plastic Planter 12 Pot is used for all types of indoor & outdoor plants."
+      ]
+    },
+    {
+      "mr": "name[Gypsy Soul Casual Short Sleeve Polka Print Women's Top], category[Clothing], subcategory[Women's Clothing], priceRange[moderate], ideal for[Women's], occasion[Casual], pattern[Polka Print], fabric[Georgette (Polyester)]",
+      "generated": "Gypsy is a beautiful and unique fashion statement. This polka print is made of Polyester and is made to last longer than normal.",
+      "references": [
+        "Black and white polka dot georgette top with white frills at neckline and a long placket with short cap sleeves. Buttons down the front."
+      ]
+    },
+    {
+      "mr": "name[Vero Moda Casual Sleeveless Printed Women's Top], category[Clothing], subcategory[Women's Clothing], priceRange[moderate], type[Top], ideal for[Women's], occasion[Casual], pattern[Printed]",
+      "generated": "This is a beautiful and stylish pair of casual jeans from Vero. This pair of jeans is made of premium quality fabric and has a smooth texture.",
+      "references": [
+        "Get trendy with this printed top from the house of Vero Moda. This black top will make you look elegant."
+      ]
+    },
+    {
+      "mr": "name[Radiant Bay Infinity Bows Yellow Gold Diamond 18 K Ring], brand[Radiant Bay], category[Jewellery], subcategory[Rings], priceRange[expensive], type[Ring], ideal for[Women], color[Yellow], occasion[Workwear]",
+      "generated": "This beautiful ring holds 8 diamonds, a total diamond weight of 0.6 carat, a diamond weight, a weight of 1.6 per carat and a total weight of 2.5 carat.",
+      "references": [
+        "This beautiful ring holds 44 diamonds with a total diamond weight of 0.2 carat. Top Width : 6.6mm, Shank Width : 1.4 mm."
+      ]
+    },
+    {
+      "mr": "name[Vaishali Bindi and Bangles Brass, Copper Bangle Set], brand[Vaishali Bindi and Bangles], category[Jewellery], subcategory[Bangles, Bracelets & Armlets], priceRange[moderate], type[Bangle Set], ideal for[Girls, Women], color[Green], precious artificial jewellery[Fashion Jewellery]",
+      "generated": "This Vaishalis Bindi Set is made of Brass and Brass. It is made up of Brass, Brass, and Brass Plated.",
+      "references": [
+        "Fabulous Mahendi Green Colour Bangle Set with variety of Bangles embellished with Pearl and Thread work to enhance your traditional appearance."
+      ]
+    },
+    {
+      "mr": "name[Zwart CLINROV 32 L Medium Backpack], category[Bags, Wallets & Belts], subcategory[Bags], priceRange[expensive], type[Backpack], ideal for[Men, Women], occasion[Casual], pattern[Vibrant Colour]",
+      "generated": "This is the best looking and most versatile bag for men and women. This bag holds 32 L weight and is made up of sturdy and comfortable fabric.",
+      "references": [
+        "Green and black Rucksack. Has adjustable shoulder strap with branding at front."
+      ]
+    },
+    {
+      "mr": "name[Cayman Full Sleeve Solid Men's Sweatshirt], category[Clothing], subcategory[Men's Clothing], priceRange[moderate], type[Hooded], ideal for[Men's], occasion[Casual], pattern[Solid]",
+      "generated": "This sweatshirt is made of premium quality fabric, it has a high quality fabric and is comfortable to wear. The front pockets are made of high quality cotton and are comfortable to carry.",
+      "references": [
+        "These Hoodies are for those who prefer wearing something comfy and relaxed on a regular basis. These trend setters are top of the line and have no intentions of going out of fashion.Men's winter wear fleece sweatshirt,Full Zipper wth Hood."
+      ]
+    }
+  ]
+}

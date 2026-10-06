@@ -1,0 +1,28 @@
+device: cpu (no GPU found - training will be slow)
+trainable 184,320 / 124,624,128 = 0.1479%
+training on 98 (MR, reference) pairs for 20 epochs
+epoch 1 step 1/260 loss 10.0197 (5s elapsed)
+epoch 2 step 20/260 loss 6.8388 (49s elapsed)
+epoch 4 step 40/260 loss 5.5228 (94s elapsed)
+epoch 5 step 60/260 loss 5.5383 (141s elapsed)
+epoch 7 step 80/260 loss 4.9821 (184s elapsed)
+epoch 8 step 100/260 loss 4.8112 (232s elapsed)
+epoch 10 step 120/260 loss 4.9810 (277s elapsed)
+epoch 11 step 140/260 loss 4.8561 (325s elapsed)
+epoch 13 step 160/260 loss 4.1577 (370s elapsed)
+epoch 14 step 180/260 loss 4.4941 (417s elapsed)
+epoch 16 step 200/260 loss 3.9074 (463s elapsed)
+epoch 17 step 220/260 loss 3.6563 (510s elapsed)
+epoch 19 step 240/260 loss 3.5823 (558s elapsed)
+epoch 20 step 260/260 loss 3.3078 (610s elapsed)
+generating for 12 unique test MRs (beams=1)
+COVERAGE BY SLOT: {"name": "0% (0/12)", "type": "36% (4/11)", "pattern": "20% (1/5)", "color": "0% (0/7)", "brand": "0% (0/6)", "material": "0% (0/2)", "fabric": "0% (0/1)"}
+METRICS: {
+  "BLEU": 6.307705365076959e-77,
+  "BLEU_smoothed": 0.7417683959432793,
+  "NIST": 0.8424139426644105,
+  "ROUGE_L": 12.706040089084565,
+  "METEOR": 9.078234804582616,
+  "slot_value_coverage_%": 11.363636363636363
+}
+saved to results\newdata_cold

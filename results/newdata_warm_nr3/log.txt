@@ -1,0 +1,14 @@
+device: cpu (no GPU found - training will be slow)
+trainable 184,320 / 124,624,128 = 0.1479%
+training on 8 (MR, reference) pairs for 0 epochs
+generating for 12 unique test MRs (beams=1)
+COVERAGE BY SLOT: {"name": "0% (0/12)", "type": "45% (5/11)", "pattern": "20% (1/5)", "color": "14% (1/7)", "brand": "33% (2/6)", "material": "100% (2/2)", "fabric": "0% (0/1)"}
+METRICS: {
+  "BLEU": 5.446671000681431,
+  "BLEU_smoothed": 5.446671000681431,
+  "NIST": 1.7285287855918972,
+  "ROUGE_L": 18.242600790155517,
+  "METEOR": 20.68542206071254,
+  "slot_value_coverage_%": 25.0
+}
+saved to results\newdata_warm_nr3

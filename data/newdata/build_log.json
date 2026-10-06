@@ -1,0 +1,64 @@
+{
+  "raw_rows": 1000,
+  "dropped": {
+    "description was only sales boilerplate": 596,
+    "cleaned description > 45 words": 22,
+    "description is a spec dump ('Key Features of ...')": 190,
+    "cleaned description < 8 words": 21,
+    "no price": 3,
+    "duplicate target sentence": 37
+  },
+  "final_rows": 131,
+  "train": 105,
+  "dev": 13,
+  "test": 13,
+  "avg_target_words": 26.1,
+  "avg_slots_per_MR": 8.65,
+  "pct_targets_mentioning_an_MR_value": 57.3,
+  "price_cutoffs": [
+    799.0,
+    1500.0
+  ],
+  "most_common_spec_slots": [
+    [
+      "type",
+      658
+    ],
+    [
+      "ideal for",
+      643
+    ],
+    [
+      "color",
+      534
+    ],
+    [
+      "brand",
+      452
+    ],
+    [
+      "occasion",
+      450
+    ],
+    [
+      "pattern",
+      307
+    ],
+    [
+      "fabric",
+      305
+    ],
+    [
+      "material",
+      237
+    ],
+    [
+      "weight",
+      198
+    ],
+    [
+      "width",
+      179
+    ]
+  ]
+}

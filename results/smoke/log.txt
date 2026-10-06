@@ -1,0 +1,13 @@
+trainable 184,320 / 124,624,128 = 0.1479%
+training on 200 (MR, reference) pairs for 1 epochs
+epoch 1 step 1/25 loss 9.7233 (1s elapsed)
+epoch 1 step 20/25 loss 6.5930 (25s elapsed)
+generating for 20 unique test MRs (beams=1)
+METRICS: {
+  "BLEU": 8.116802055895909e-154,
+  "NIST": 0.0002104734209981219,
+  "ROUGE_L": 10.347535465799222,
+  "METEOR": 4.3842586670828725,
+  "slot_value_coverage_%": 2.5
+}
+saved to results\smoke

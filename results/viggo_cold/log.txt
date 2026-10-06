@@ -1,0 +1,40 @@
+device: cpu (no GPU found - training will be slow)
+trainable 184,320 / 124,624,128 = 0.1479%
+training on 2000 (MR, reference) pairs for 2 epochs
+epoch 1 step 1/500 loss 10.0123 (3s elapsed)
+epoch 1 step 20/500 loss 7.7079 (33s elapsed)
+epoch 1 step 40/500 loss 6.4282 (72s elapsed)
+epoch 1 step 60/500 loss 6.5526 (108s elapsed)
+epoch 1 step 80/500 loss 4.2405 (141s elapsed)
+epoch 1 step 100/500 loss 4.5341 (175s elapsed)
+epoch 1 step 120/500 loss 4.1970 (211s elapsed)
+epoch 1 step 140/500 loss 3.2211 (246s elapsed)
+epoch 1 step 160/500 loss 3.0065 (284s elapsed)
+epoch 1 step 180/500 loss 2.2788 (318s elapsed)
+epoch 1 step 200/500 loss 2.6397 (351s elapsed)
+epoch 1 step 220/500 loss 2.4152 (387s elapsed)
+epoch 1 step 240/500 loss 2.7866 (429s elapsed)
+epoch 2 step 260/500 loss 2.4249 (469s elapsed)
+epoch 2 step 280/500 loss 2.3314 (505s elapsed)
+epoch 2 step 300/500 loss 2.2415 (539s elapsed)
+epoch 2 step 320/500 loss 2.4610 (573s elapsed)
+epoch 2 step 340/500 loss 1.7395 (625s elapsed)
+epoch 2 step 360/500 loss 1.6464 (659s elapsed)
+epoch 2 step 380/500 loss 1.6979 (694s elapsed)
+epoch 2 step 400/500 loss 1.7656 (737s elapsed)
+epoch 2 step 420/500 loss 1.6816 (810s elapsed)
+epoch 2 step 440/500 loss 1.9114 (848s elapsed)
+epoch 2 step 460/500 loss 2.1358 (885s elapsed)
+epoch 2 step 480/500 loss 1.6034 (920s elapsed)
+epoch 2 step 500/500 loss 1.7477 (956s elapsed)
+generating for 100 unique test MRs (beams=1)
+COVERAGE BY SLOT: {"name": "96% (79/82)", "release_year": "60% (21/35)", "developer": "40% (12/30)"}
+METRICS: {
+  "BLEU": 32.70505501882696,
+  "BLEU_smoothed": 32.70505501882696,
+  "NIST": 3.7932994200947627,
+  "ROUGE_L": 44.87043549822188,
+  "METEOR": 48.39614606156914,
+  "slot_value_coverage_%": 76.19047619047619
+}
+saved to results\viggo_cold

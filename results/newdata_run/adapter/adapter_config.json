@@ -1,0 +1,18 @@
+{
+  "auto_mapping": null,
+  "base_model_name_or_path": "gpt2",
+  "encoder_hidden_size": 768,
+  "inference_mode": true,
+  "init_weights": null,
+  "modules_to_save": null,
+  "num_attention_heads": 12,
+  "num_layers": 12,
+  "num_transformer_submodules": 1,
+  "num_virtual_tokens": 10,
+  "peft_type": "PREFIX_TUNING",
+  "peft_version": "0.21.2",
+  "prefix_projection": false,
+  "revision": null,
+  "task_type": "CAUSAL_LM",
+  "token_dim": 768
+}
