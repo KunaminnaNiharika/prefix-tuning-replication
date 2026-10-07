@@ -1,0 +1,14 @@
+device: cpu (no GPU found - training will be slow)
+trainable 184,320 / 124,624,128 = 0.1479%
+training on 8 (MR, reference) pairs for 0 epochs
+generating for 630 unique test MRs (beams=1)
+COVERAGE BY SLOT: {"name": "100% (630/630)", "eattype": "100% (630/630)", "area": "23% (126/558)", "near": "100% (618/618)", "food": "73% (400/546)", "pricerange": "62% (299/480)"}
+METRICS: {
+  "BLEU": 57.08822264781178,
+  "BLEU_smoothed": 57.08822264781178,
+  "NIST": 5.171593405502832,
+  "ROUGE_L": 59.40075323240116,
+  "METEOR": 64.94604263487618,
+  "slot_value_coverage_%": 78.07625649913345
+}
+saved to results\e2e_full

@@ -1,0 +1,160 @@
+{
+  "args": {
+    "train_csv": "data\\e2e\\trainset.csv",
+    "test_csv": "data\\e2e\\testset_w_refs.csv",
+    "model": "gpt2",
+    "n_train": 8,
+    "epochs": 0,
+    "bs": 8,
+    "lr": 0.01,
+    "prefix_len": 10,
+    "max_len": 128,
+    "n_eval": 630,
+    "beams": 1,
+    "no_repeat_ngram": 0,
+    "out_dir": "results\\e2e_full",
+    "seed": 0,
+    "keep_act": false,
+    "init_adapter": "results\\e2e_short\\adapter",
+    "cover_slots": "name,near,food,eattype,area,pricerange"
+  },
+  "trainable": 184320,
+  "total": 124624128,
+  "loss_history": [],
+  "metrics": {
+    "BLEU": 57.08822264781178,
+    "BLEU_smoothed": 57.08822264781178,
+    "NIST": 5.171593405502832,
+    "ROUGE_L": 59.40075323240116,
+    "METEOR": 64.94604263487618,
+    "slot_value_coverage_%": 78.07625649913345
+  },
+  "coverage_by_slot": {
+    "name": "100% (630/630)",
+    "eattype": "100% (630/630)",
+    "area": "23% (126/558)",
+    "near": "100% (618/618)",
+    "food": "73% (400/546)",
+    "pricerange": "62% (299/480)"
+  },
+  "samples": [
+    {
+      "mr": "name[Blue Spice], eatType[coffee shop], area[city centre]",
+      "generated": "Blue Spice is a coffee shop located in the city centre.",
+      "references": [
+        "A coffee shop in the city centre area called Blue Spice.",
+        "Blue Spice is a coffee shop in city centre."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[coffee shop], area[riverside]",
+      "generated": "Blue Spice is a coffee shop located in the riverside area.",
+      "references": [
+        "There is a coffee shop Blue Spice in the riverside area.",
+        "At the riverside, there is a coffee shop called The Blue Spice."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[coffee shop], customer rating[5 out of 5], near[Crowne Plaza Hotel]",
+      "generated": "Blue Spice is a coffee shop near Crowne Plaza Hotel.",
+      "references": [
+        "The coffee shop Blue Spice is based near Crowne Plaza Hotel and has a high customer rating of 5 out of 5.",
+        "The Blue Spice coffee shop, near Crowne Plaza Hotel, has a customer rating of 5 out of 5."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[coffee shop], customer rating[average], near[Burger King]",
+      "generated": "Blue Spice is a coffee shop near Burger King.",
+      "references": [
+        "Burger King is near the coffee shop Blue Spice which has an average customer rating.",
+        "The Blue Spice coffee shop near Burger King has good customer ratings with excellent food and service, with a lovely atmosphere."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[coffee shop], customer rating[average], near[Crowne Plaza Hotel]",
+      "generated": "Blue Spice is a coffee shop near Crowne Plaza Hotel.",
+      "references": [
+        "Crowne Plaza Hotel has a coffee shop nearby with an average customer rating called Blue Spice."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], area[city centre]",
+      "generated": "Blue Spice is a pub located in the city centre.",
+      "references": [
+        "A pub in the city centre area called Blue Spice.",
+        "Blue Spice is a pub in city centre."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], area[riverside]",
+      "generated": "Blue Spice is a pub located in the riverside area.",
+      "references": [
+        "There is a pub Blue Spice in the riverside area.",
+        "At the riverside, there is a pub called The Blue Spice."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], customer rating[5 out of 5], near[Crowne Plaza Hotel]",
+      "generated": "Blue Spice is a pub near Crowne Plaza Hotel.",
+      "references": [
+        "The pub Blue Spice is based near Crowne Plaza Hotel and has a high customer rating of 5 out of 5.",
+        "The Blue Spice pub, near Crowne Plaza Hotel, has a customer rating of 5 out of 5."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], customer rating[average], near[Burger King]",
+      "generated": "Blue Spice is a pub near Burger King.",
+      "references": [
+        "Burger King is near the pub Blue Spice which has an average customer rating.",
+        "The Blue Spice pub near Burger King has good customer ratings with excellent food and service, with a lovely atmosphere."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], customer rating[average], near[Crowne Plaza Hotel]",
+      "generated": "Blue Spice is a pub near Crowne Plaza Hotel.",
+      "references": [
+        "Crowne Plaza Hotel has a pub nearby with an average customer rating called Blue Spice."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], food[Chinese], area[city centre], familyFriendly[no], near[Rainbow Vegetarian Caf\u00e9]",
+      "generated": "Blue Spice is a pub near Rainbow Vegetarian Caf\u00e9. It is not family-friendly and has a customer rating of no children.",
+      "references": [
+        "Blue Spice, located near Rainbow Vegetarian Caf\u00e9 in the city centre, is a pub that also sells Chinese food.  Children should not visit.",
+        "A pub named Blue Spice is located in the city centre. It is for adults and is close to Rainbow Vegetarian Caf\u00e9. They offer Chinese food."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], food[Chinese], area[city centre], familyFriendly[yes], near[Rainbow Vegetarian Caf\u00e9]",
+      "generated": "Blue Spice is a pub near Rainbow Vegetarian Caf\u00e9. It is family friendly and has a customer rating of 5 out of 5.",
+      "references": [
+        "Blue Spice is a pub providing Chinese food It is located in the city centre. It is near Rainbow Vegetarian Caf\u00e9.",
+        "In the city centre near the Rainbow Vegetarian Caf\u00e9 there is a family friendly pub called Blue Spice. They serve Chinese food."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], food[Chinese], area[riverside], familyFriendly[no], near[Rainbow Vegetarian Caf\u00e9]",
+      "generated": "Blue Spice is a pub near Rainbow Vegetarian Caf\u00e9. It is not family-friendly and has a customer rating of no children.",
+      "references": [
+        "There is a non-family friendly pub along the riverside and near Rainbow Vegetarian Caf\u00e9. Its name is Blue Spice and serves Chinese food.",
+        "Blue Spice, a pub located riverside near the Rainbow Vegetarian Caf\u00e9, serves Chines food. It is not family friendly."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], food[Chinese], area[riverside], familyFriendly[yes], near[Rainbow Vegetarian Caf\u00e9]",
+      "generated": "Blue Spice is a pub near Rainbow Vegetarian Caf\u00e9. It is family friendly and has a customer rating of 5 out of 5.",
+      "references": [
+        "Blue Spice is a family friendly Chinese pub in Riverside near the Rainbow Vegetarian Caf\u00e9.",
+        "Blue Spice, a kid-friendly pub near the Rainbow Vegetarian Caf\u00e9 in the riverside area, is a place where one can order Chinese food."
+      ]
+    },
+    {
+      "mr": "name[Blue Spice], eatType[pub], food[English], area[city centre], familyFriendly[no], near[Rainbow Vegetarian Caf\u00e9]",
+      "generated": "Blue Spice is a pub near Rainbow Vegetarian Caf\u00e9. It is not family-friendly and has a customer rating of no children.",
+      "references": [
+        "Blue Spice is a pub that serves English food.  It is located near Rainbow Vegetarian Caf\u00e9 is the city centre area.  It is also a pub.  It is not family-friendly.",
+        "The pub Blue Spice is not conducive for families.  They serve English food and located in the city centre  near the Rainbow Vegetarian Caf\u00e9."
+      ]
+    }
+  ]
+}
