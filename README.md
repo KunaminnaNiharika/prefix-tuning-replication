@@ -49,13 +49,15 @@ prefix_adapter/   output of the first feasibility check (two toy examples)
 | `act_check.py` | ViGGO: question vs. statement by dialogue act, and invented ESRB ratings |
 | `peek_flipkart.py` | print statistics and sample rows of the Flipkart file |
 | `build_dataset.py` | written for a first Kaggle file that turned out to contain no text; kept for the record |
+| `agreement.py` | Cohen's kappa and confusion matrix between two annotation sheets |
+| `score_authors_output.py` | score the authors' code output (`*_test_gold`, `*_test_beam`) with the same scorer as `train_prefix.py` |
 
 ## Setup
 
 Python 3.11. Versions used: torch 2.14.1, transformers 5.18.0, peft 0.21.2, datasets 5.0.1.
 
 ```
-pip install torch transformers peft datasets pandas nltk rouge-score
+pip install -r requirements.txt
 ```
 
 On Windows, install into a virtual environment with a short path (for example `python -m venv D:\venv`).
@@ -85,7 +87,7 @@ python src\build_flipkart.py --csv data\raw\flipkart.csv --out data\newdata --n_
 python src\filter_by_annotation.py --dir data\newdata --out data\newdata_clean
 ```
 
-## Status: results for the Update Presentation (Oct 2026)
+## Results
 
 | Dataset | Setup | BLEU | ROUGE-L | METEOR | Slot coverage |
 |---|---|---|---|---|---|
@@ -113,6 +115,51 @@ Notes:
   100 pairs were annotated for whether the sentence is supported by its meaning representation: 25 yes / 66 partial / 9 no.
   Outputs often contain invented details and repetition loops; a constraint on repeated phrases within the generated text removed the loops (loops 2 -> 0 of 12) without affecting copying from the input.
   The first version of that constraint (the built-in Hugging Face option) also blocked copying product names (name coverage 42% -> 0%).
+
+### Inter-annotator agreement (Flipkart)
+
+A second annotator labelled 50 of the 100 annotated pairs independently (`data/newdata/rater2_sheet.csv`):
+
+```
+python src/agreement.py data/newdata/annotation_sheet.csv data/newdata/rater2_sheet.csv
+```
+
+Round 1 (no written guidelines): Cohen's kappa 0.06 (slight), raw agreement 28%. Most disagreements are pairs I labelled
+*partial* and the second annotator labelled *yes*: the boundary of *partial* was undefined. Written guidelines are in
+`docs/annotation_guidelines.md`; the round-2 sheet (the other 50 pairs) is `data/newdata/rater2_round2_sheet.csv`.
+
+### LLM-as-judge
+
+72 outputs (40 E2E, 20 ViGGO, 12 Flipkart) rated for fluency, omissions, hallucination, repetition and dialogue-act fit;
+rubric in `docs/llm_judge_rubric.md`, ratings in `results/llm_judge_ratings.csv`.
+
+| Data | Fluency (1-5) | Omitted values | Hallucination | Repetition | Fully faithful |
+|---|---|---|---|---|---|
+| E2E (40) | 4.55 | 1.62 | 12% | 12% | 8% |
+| ViGGO (20) | 3.90 | 1.05 | 40% | 15% | 25% |
+| Flipkart (12) | 2.58 | 2.08 | 58% | 75% | 0% |
+
+## Replication with the authors' original code (Google Colab)
+
+`colab/original_code_attempt.ipynb` runs https://github.com/XiangLi1999/PrefixTuning (branch `cleaned`) on a Colab T4 GPU.
+Fixes that were needed:
+
+1. Colab's Python 3.13 cannot build `tokenizers==0.8.1rc2` (needed by the bundled `transformers==3.2.0`): Python 3.8 environment with `uv`, plus `six`.
+2. `train_e2e.py` starts `python run_language_modeling.py` with `os.system`, which picked up Colab's Python (`ImportError: cannot import name 'cached_path'`): call the 3.8 Python directly.
+3. Hard-coded paths on the authors' servers (`/u/scr/xlisali/...`): GPT-2 medium downloaded from Hugging Face, paths patched with `sed`.
+4. `gen.py` reads its settings from the model folder's name (`NameError: name 'tuning_mode' is not defined`, prefix length fixed at 20): call `run_generation.py` directly.
+5. `run_generation.py` also reads the prefix format from the folder name (`AssertionError: ... need to specify a valid prefix mode`): link the model folder as `e2e_p10_e1_act_cat`.
+
+Result (GPT-2 medium, prefix length 10, 1 epoch = 8,413 steps in 31 minutes on a T4, beam 5, 630 test MRs,
+scored with the same scorer as my `peft` runs; `results/authors_code/scores.json`):
+
+| System | BLEU | NIST | ROUGE-L | Slot coverage |
+|---|---|---|---|---|
+| Paper, GPT-2 medium prefix (10 epochs, official scorer) | 69.7 | 8.81 | 71.4 | – |
+| Authors' code, GPT-2 medium, 1 epoch (my scorer) | 67.4 | 7.24 | 68.8 | 98.3% |
+| My `peft` run, GPT-2 small, 4,000 pairs, 2 epochs (my scorer) | 57.1 | 5.17 | 59.4 | 78.1% |
+
+The authors' model mentions the area in 97% of outputs (my `peft` model: 23%).
 
 ### Run folders
 
