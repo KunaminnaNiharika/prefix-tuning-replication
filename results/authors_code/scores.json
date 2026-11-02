@@ -1,0 +1,22 @@
+{
+  "run": "authors' code (XiangLi1999/PrefixTuning, branch cleaned) on Google Colab T4",
+  "model": "gpt2-medium, prefix-tuning (activation, cat), prefix length 10, MLP mid_dim 512",
+  "training": "1 epoch over all 42,061 E2E training pairs (8,413 steps), batch 5, lr 5e-5, seed 101, 31 minutes",
+  "decoding": "run_generation.py, beam 5, 630 E2E test MRs",
+  "scorer": "same NLTK / rouge_score scorer as src/train_prefix.py (see colab/original_code_attempt.ipynb, cell 6)",
+  "n": 630,
+  "BLEU": 67.39,
+  "NIST": 7.24,
+  "METEOR_nltk": 78.77,
+  "ROUGE_L": 68.82,
+  "slot_coverage_%": 98.27,
+  "coverage_by_slot": {
+    "name": "100% (630/630)",
+    "eattype": "100% (630/630)",
+    "area": "97% (544/558)",
+    "near": "100% (618/618)",
+    "food": "96% (524/546)",
+    "pricerange": "95% (456/480)"
+  },
+  "paper_gpt2_medium_prefix": {"BLEU": 69.7, "NIST": 8.81, "METEOR_official": 46.1, "ROUGE_L": 71.4, "CIDEr": 2.49}
+}
