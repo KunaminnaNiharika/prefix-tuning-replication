@@ -150,12 +150,12 @@ Fixes that were needed:
 4. `gen.py` reads its settings from the model folder's name (`NameError: name 'tuning_mode' is not defined`, prefix length fixed at 20): call `run_generation.py` directly.
 5. `run_generation.py` also reads the prefix format from the folder name (`AssertionError: ... need to specify a valid prefix mode`): link the model folder as `e2e_p10_e1_act_cat`.
 
-Result (GPT-2 medium, prefix length 10, 1 epoch = 8,413 steps in 31 minutes on a T4, beam 5, 630 test MRs,
+Result (GPT-2 medium, the paper's general defaults: prefix length 10, batch 5, lr 5e-5; 1 epoch = 8,413 steps in 31 minutes on a T4, beam 5, 630 test MRs,
 scored with the same scorer as my `peft` runs; `results/authors_code/scores.json`):
 
 | System | BLEU | NIST | ROUGE-L | Slot coverage |
 |---|---|---|---|---|
-| Paper, GPT-2 medium prefix (10 epochs, official scorer) | 69.7 | 8.81 | 71.4 | – |
+| Paper, GPT-2 medium prefix (5 epochs, batch 10, lr 8e-5, prefix 5; official scorer) | 69.7 | 8.81 | 71.4 | – |
 | Authors' code, GPT-2 medium, 1 epoch (my scorer) | 67.4 | 7.24 | 68.8 | 98.3% |
 | My `peft` run, GPT-2 small, 4,000 pairs, 2 epochs (my scorer) | 57.1 | 5.17 | 59.4 | 78.1% |
 
