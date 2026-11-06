@@ -1,0 +1,7 @@
+{
+  "run": "decoding ablation: saved prefix results/e2e_short/adapter re-decoded on Colab (Tesla T4; transformers 5.22.0, peft 0.21.2, torch 2.11.0+cu130), 6 Nov 2026",
+  "command": "python src/train_prefix.py --train_csv data/e2e/trainset.csv --test_csv data/e2e/testset_w_refs.csv --init_adapter results/e2e_short/adapter --epochs 0 --n_train 8 --n_eval 630 --beams {1|5} --out_dir results/e2e_{greedy|beam5}",
+  "greedy_beams1": {"BLEU": 57.088, "NIST": 5.172, "ROUGE_L": 59.401, "METEOR_nltk": 64.946, "slot_value_coverage_%": 78.076, "area": "23% (126/558)", "food": "73% (400/546)"},
+  "beam5": {"BLEU": 59.383, "NIST": 6.064, "ROUGE_L": 62.330, "METEOR_nltk": 68.560, "slot_value_coverage_%": 83.189, "area": "45% (251/558)", "food": "71% (385/546)", "pricerange": "76% (366/480, derived from overall coverage)"},
+  "note": "greedy reproduces the laptop run (results/e2e_full) exactly"
+}
