@@ -1,6 +1,7 @@
 """
 Inter-annotator agreement (Cohen's kappa) between two annotation sheets.
-Usage: python src/agreement.py data/newdata/annotation_sheet.csv data/newdata/rater2_sheet.csv
+Usage: python src/agreement.py data/newdata/annotation_sheet.csv data/newdata/rater2_batch1.csv [data/newdata/rater2_batch2.csv ...]
+All sheets after the first are rater 2 and are combined; give one of them to score a single batch.
 """
 import sys
 import pandas as pd
@@ -8,7 +9,7 @@ import pandas as pd
 COL = "supported_by_MR"
 LABELS = ["yes", "partial", "no"]
 a = pd.read_csv(sys.argv[1], encoding="utf-8-sig")
-b = pd.read_csv(sys.argv[2], encoding="utf-8-sig")
+b = pd.concat([pd.read_csv(f, encoding="utf-8-sig") for f in sys.argv[2:]], ignore_index=True)
 m = a.merge(b[["mr", "ref", COL]], on=["mr", "ref"], suffixes=("_1", "_2"))
 m["r1"] = m[COL + "_1"].astype(str).str.strip().str.lower()
 m["r2"] = m[COL + "_2"].astype(str).str.strip().str.lower()
