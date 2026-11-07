@@ -184,6 +184,13 @@ pairs and its interval spans 0 to 1. The labels also contradict the guidelines: 
 right product that adds an unsupported fact is *partial*, and in at least 20 pairs the annotators' own notes describe
 exactly that, yet the pairs were labelled *no*. The guidelines, as worded, did not fix the *partial* / *no* boundary.
 
+How the two sheets were produced: `guideline_round_annotator1.csv` was filled in by me (annotator 1) and
+`guideline_round_annotator2.csv` by the second annotator. Both annotators report that they labelled separately and by
+hand, using `docs/annotation_guidelines.md`. The notes in the two sheets are closely similar in wording; this overlap is
+unexplained and could not be verified further (report, Section 4.3). The quote characters in both files were repaired
+after an encoding mismatch (see the commit history); no labels or notes were changed. These 31 labels were not used to
+filter the data: the 31 pairs stay in the experiments (26 train, 3 dev, 2 test).
+
 ### LLM-as-judge
 
 72 outputs (40 E2E, 20 ViGGO, 12 Flipkart) rated for fluency, omissions, hallucination, repetition and dialogue-act fit;
