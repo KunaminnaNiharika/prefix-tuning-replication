@@ -1,0 +1,8 @@
+{
+  "scorer": "tuetschek/e2e-metrics measure_scores.py (official E2E NLG Challenge scripts)",
+  "source": "results/e2e_full/generations.csv (peft, GPT-2 small, greedy, 630 test MRs)",
+  "n": 630,
+  "official": {"BLEU": 0.5631, "NIST": 6.9171, "METEOR": 0.3551, "ROUGE_L": 0.5989, "CIDEr": 1.6338},
+  "my_scorer_same_outputs": {"BLEU": 57.09, "NIST": 5.17, "METEOR_nltk": 64.95, "ROUGE_L": 59.40},
+  "note": "Produced by src/official_e2e_scores.py. Official scores are on a 0-1 scale except NIST."
+}
