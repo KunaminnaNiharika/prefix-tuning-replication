@@ -187,8 +187,10 @@ exactly that, yet the pairs were labelled *no*. The guidelines, as worded, did n
 How the two sheets were produced: `guideline_round_annotator1.csv` was filled in by me (annotator 1) and
 `guideline_round_annotator2.csv` by the second annotator. Both annotators report that they labelled separately and by
 hand, using `docs/annotation_guidelines.md`. The notes in the two sheets are closely similar in wording; this overlap is
-unexplained and could not be verified further (report, Section 4.3). The quote characters in both files were repaired
-after an encoding mismatch (see the commit history); no labels or notes were changed. These 31 labels were not used to
+unexplained and could not be verified further (report, Section 4.3). The repository history for these two files starts
+when they were uploaded on 7 November 2026; it does not show when or how they were filled in. The original files, with
+their saved dates, are kept by each annotator. After upload, the quote characters in both files were repaired after an
+encoding mismatch (see the commit history); no labels or notes were changed. These 31 labels were not used to
 filter the data: the 31 pairs stay in the experiments (26 train, 3 dev, 2 test).
 
 ### LLM-as-judge
