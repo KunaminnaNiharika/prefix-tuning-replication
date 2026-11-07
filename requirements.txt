@@ -1,7 +1,9 @@
-torch>=2.0
-transformers>=4.40
-peft>=0.10
-datasets>=2.18
+# Versions used for every peft run in the report (Windows laptop, Python 3.11).
+torch==2.14.1
+transformers==5.18.0
+peft==0.21.2
+datasets==5.0.1
+# Versions of these were not recorded; any recent release should work.
 pandas
 nltk
 rouge-score
