@@ -119,7 +119,7 @@ git clone https://github.com/tuetschek/e2e-metrics
 pip install -r e2e-metrics/requirements.txt
 python src/official_e2e_scores.py results/e2e_full/generations.csv data/e2e/testset_w_refs.csv e2e-metrics results/e2e_full/official_e2e_metrics.json
 ```
-Authors' code (Colab, T4 GPU): run `colab/original_code_attempt.ipynb`; it ends by scoring the output with
+Authors' code (Colab, T4 GPU): run `colab/original_code_attempt.ipynb` (`colab/original_code_run_with_outputs.ipynb` is the executed run, with the training log, timings and scores); it ends by scoring the output with
 `python src/score_authors_output.py <name>_test_gold <name>_test_beam`.
 
 ## Results
@@ -183,7 +183,7 @@ rubric in `docs/llm_judge_rubric.md`, ratings in `results/llm_judge_ratings.csv`
 
 ## Replication with the authors' original code (Google Colab)
 
-`colab/original_code_attempt.ipynb` runs https://github.com/XiangLi1999/PrefixTuning (branch `cleaned`) on a Colab T4 GPU.
+`colab/original_code_attempt.ipynb` runs https://github.com/XiangLi1999/PrefixTuning (branch `cleaned`) on a Colab T4 GPU. The executed copy with all cell outputs is `colab/original_code_run_with_outputs.ipynb`: it shows 42,061 training examples, 8,413 steps, training from 10:01 to 10:33 on 2 November 2026, and the final scores (BLEU 67.39, NIST 7.24, ROUGE-L 68.82, slot coverage 98.27%).
 Fixes that were needed:
 
 1. Colab's Python 3.13 cannot build `tokenizers==0.8.1rc2` (needed by the bundled `transformers==3.2.0`): Python 3.8 environment with `uv`, plus `six`.
