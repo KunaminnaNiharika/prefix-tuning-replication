@@ -113,6 +113,12 @@ python src/repetition_check.py results/newdata_cold results/newdata_warm results
 python src/act_check.py results/viggo_cold results/viggo_warm results/viggo_warm_act
 python src/agreement_bootstrap.py data/newdata/annotation_sheet.csv data/newdata/rater2_batch1.csv data/newdata/rater2_batch2.csv
 ```
+Official E2E scorer on the saved greedy outputs (needs Java and the Perl modules XML::Twig and Sort::Naturally; see the script's docstring):
+```
+git clone https://github.com/tuetschek/e2e-metrics
+pip install -r e2e-metrics/requirements.txt
+python src/official_e2e_scores.py results/e2e_full/generations.csv data/e2e/testset_w_refs.csv e2e-metrics results/e2e_full/official_e2e_metrics.json
+```
 Authors' code (Colab, T4 GPU): run `colab/original_code_attempt.ipynb`; it ends by scoring the output with
 `python src/score_authors_output.py <name>_test_gold <name>_test_beam`.
 
@@ -194,13 +200,16 @@ scored with the same scorer as my `peft` runs; `results/authors_code/scores.json
 | Paper, GPT-2 medium prefix (5 epochs, batch 10, lr 8e-5, prefix 5; official scorer) | 69.7 | 8.81 | 71.4 | – |
 | Authors' code, GPT-2 medium, 1 epoch (my scorer) | 67.4 | 7.24 | 68.8 | 98.3% |
 | My `peft` run, GPT-2 small, 4,000 pairs, 2 epochs (my scorer) | 57.1 | 5.17 | 59.4 | 78.1% |
+| Same `peft` outputs, official E2E scorer | 56.3 | 6.92 | 59.9 | – |
 
 The authors' model mentions the area in 97% of outputs (my `peft` model: 23%).
 
 ### Run folders
 
-Reported results: `e2e_full`, `e2e_eval`, `viggo_warm`, `viggo_cold`, `viggo_warm_act`, `newdata_warm`, `newdata_cold`, `newdata_warm_nr3`, `newdata_warm_nr3g`.
-Development runs kept for the record: `smoke`, `lr_1e-2`, `lr_3e-2`, `e2e_main`, `e2e_short`, `newdata_run`.
+Reported results: `e2e_full`, `e2e_eval`, `viggo_warm`, `viggo_cold`, `viggo_warm_act`, `newdata_warm`, `newdata_cold`, `newdata_warm_nr3g`.
+Development runs kept for the record: `smoke`, `lr_1e-2`, `lr_3e-2`, `e2e_main`, `e2e_short`, `newdata_run`, `newdata_warm_nr3`.
+
+**Which NR3 run is in the report.** Table 6's "E2E + NR3" row (BLEU 4.1, coverage 40.9%) is `newdata_warm_nr3g`, which uses the `NoRepeatGenerated` processor in `src/train_prefix.py`: no 3-gram may repeat *within the generated text*. `newdata_warm_nr3` (BLEU 5.4, coverage 25.0%) is an earlier, superseded attempt that used transformers' built-in `no_repeat_ngram_size=3`. That option also counts the prompt, so it stops the model copying multi-word values (product names, brands) out of the MR, which is why its slot coverage drops to 25%. It is not reported and cannot be re-created with the current script.
 
 ## Data sources and limitations
 
