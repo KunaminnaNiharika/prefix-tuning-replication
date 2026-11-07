@@ -168,7 +168,21 @@ python src/agreement_bootstrap.py data/newdata/annotation_sheet.csv data/newdata
 
 Agreement is slight, and the disagreement changed direction between batches (first batch: many of my *partial* pairs
 labelled *no*; second batch: labelled *yes*). The boundary of *partial* was undefined. Guidelines were written
-afterwards (`docs/annotation_guidelines.md`) and have not been tested in a further round.
+afterwards (`docs/annotation_guidelines.md`). Both annotators then used them to label the 31 pairs that had never
+been annotated (`data/newdata/guideline_round_annotator1.csv`, `data/newdata/guideline_round_annotator2.csv`):
+
+```
+python src/agreement_bootstrap.py data/newdata/guideline_round_annotator1.csv data/newdata/guideline_round_annotator2.csv
+```
+
+| Pairs | n | Raw agreement | Cohen's kappa | 95% bootstrap CI |
+|---|---|---|---|---|
+| With guidelines | 31 | 97% | 0.65 | 0.00 to 1.00 |
+
+This is not evidence that the guidelines work. 30 and 29 of the 31 labels are *no*, so kappa rests on one or two
+pairs and its interval spans 0 to 1. The labels also contradict the guidelines: step 2 says a description about the
+right product that adds an unsupported fact is *partial*, and in at least 20 pairs the annotators' own notes describe
+exactly that, yet the pairs were labelled *no*. The guidelines, as worded, did not fix the *partial* / *no* boundary.
 
 ### LLM-as-judge
 
