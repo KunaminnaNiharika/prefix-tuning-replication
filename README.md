@@ -24,13 +24,19 @@ setting on the E2E NLG dataset, then applies the method to two further datasets:
 ViGGO (an existing dataset) and a product-description dataset built from
 Flipkart listings.
 
-All runs use GPT-2 small (124M parameters) with a 10-token prefix
-(184,320 trainable parameters = 0.148%), through the Hugging Face `peft` library
-(`PrefixTuningConfig`), on a Windows laptop CPU (no GPU).
+The replication has two parts. The authors' original code was run with GPT-2 medium on a
+Google Colab T4 GPU (see "Replication with the authors' original code" below). All other runs,
+including every new-data experiment, use my reimplementation: GPT-2 small (124M parameters)
+with a 10-token prefix (184,320 trainable parameters = 0.148%), through the Hugging Face `peft`
+library (`PrefixTuningConfig`), on a Windows laptop CPU (no GPU). The beam-search decoding
+ablation re-decoded the saved E2E prefix on Colab.
+
+The final report (LaTeX source and compiled PDF) is in `report/`.
 
 ## Repository structure
 
 ```
+report/     final report: LaTeX source, bibliography, Figure 2 and the compiled PDF
 src/        scripts (training, evaluation, dataset building, analysis)
 results/    one folder per run: log.txt, results.json, generations.csv, adapter/ (saved prefix)
 data/       newdata/ and newdata_clean/: the Flipkart-based dataset (raw E2E, ViGGO and Flipkart files are not stored here)
@@ -70,6 +76,12 @@ Installing into the Microsoft Store Python can fail with "filename too long".
 | E2E NLG (original paper) | https://github.com/tuetschek/e2e-dataset | 42,061 training pairs (4,000 used), 630 unique test inputs |
 | ViGGO (existing dataset) | Hugging Face `GEM/viggo` (`python src/get_viggo.py`) | 6,900 pairs (5,103 / 714 / 1,083), 9 dialogue acts; 2,000 training pairs and 100 test inputs used |
 | Product descriptions (constructed) | Flipkart sample, Hugging Face `kenthua/flipkart-raw-demo` | 1,000 products -> 131 usable pairs |
+
+## Report
+
+`report/` holds the submitted report: `report.tex` (ACL template), `references.bib`, `loss.pdf` (Figure 2) and
+the compiled `Niharika_COMP8240_A3_Final_Report.pdf`. To rebuild it, open the folder in Overleaf (or any LaTeX
+installation with the ACL style files `acl.sty` and `acl_natbib.bst`) and run pdflatex, bibtex, pdflatex, pdflatex.
 
 ## Reproducing the runs
 
@@ -233,6 +245,14 @@ Reported results: `e2e_full`, `e2e_eval`, `viggo_warm`, `viggo_cold`, `viggo_war
 Development runs kept for the record: `smoke`, `lr_1e-2`, `lr_3e-2`, `e2e_main`, `e2e_short`, `newdata_run`, `newdata_warm_nr3`.
 
 **Which NR3 run is in the report.** Table 6's "E2E + NR3" row (BLEU 4.1, coverage 40.9%) is `newdata_warm_nr3g`, which uses the `NoRepeatGenerated` processor in `src/train_prefix.py`: no 3-gram may repeat *within the generated text*. `newdata_warm_nr3` (BLEU 5.4, coverage 25.0%) is an earlier, superseded attempt that used transformers' built-in `no_repeat_ngram_size=3`. That option also counts the prompt, so it stops the model copying multi-word values (product names, brands) out of the MR, which is why its slot coverage drops to 25%. It is not reported and cannot be re-created with the current script.
+
+## Scope and limitations
+
+- Only the paper's E2E experiments were replicated; WebNLG, DART and the XSum summarisation runs were not attempted.
+- The authors'-code run used the paper's general table-to-text settings (lr 5e-5, batch 5, prefix 10) rather than its E2E-specific ones (lr 8e-5, batch 10, prefix 5), and one epoch instead of five. Its generated outputs were not kept; only its scores are (`results/authors_code/scores.json`), so they could not be re-scored with the official E2E scorer.
+- All new-data experiments (ViGGO, Flipkart) use the `peft` reimplementation, which is 10.3 BLEU below the authors' code on E2E (57.1 vs. 67.4). The conclusions rest on comparisons within this one system (warm start vs. scratch, dialogue act, 3-gram constraint).
+- Every result is a single run with one seed; differences below about one BLEU point are treated as noise.
+- The LLM judge (Claude) is not independent of the project and was not validated against human labels; it is used only as a diagnostic (report, Section 5.3).
 
 ## Data sources and limitations
 
